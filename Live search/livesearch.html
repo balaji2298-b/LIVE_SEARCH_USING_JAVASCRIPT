@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>HOW to Live search on the HTML table with jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style>
+.notfound{
+display: none;
+}
+</style>
+</head>
+<body>
+<input type='text' id='txt_searchall' placeholder='Enter search text'>&nbsp;
+<input type='text' id='txt_name' placeholder='Enter search name'>
+<br/>
+<br>
+<table width='100%' border='1' style='border-collapse:collapse;'>
+<thead>
+<tr>
+<th>S.no</th>
+<th>Name</th>
+<th>Course</th>
+<th>City</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>yogesh singh</td>
+<td>M.SC</td>
+<td>Bhopal</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sonarika Bhadoria</td>
+<td>BE</td>
+<td>Pune</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Vishal sahu</td>
+<td>BE</td>
+<td>Indore</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Sunil patel</td>
+<td>MBA</td>
+<td>Bhopal</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Anil singh</td>
+<td>MCA</td>
+<td>Delhi</td>
+</tr>
+<tr class='notfound'>
+<td colspan='4'>No record found</td>
+</tr>
+</tbody>
+</table>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+<script type='text/javascript'>
+    
+$(document).ready(function(){
+$('#txt_searchall').keyup(function(){
+    var search = $(this).val();
+    $('table tbody tr').hide();
+    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
+    if(len > 0){
+        $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
+             $(this).closest('tr').show();
+        });
+        }
+    else{
+            $('.notfound').show();
+        
+        }
+        });
+         $('#txt_name').keyup(function(){
+              var search = $(this).val();
+             $('table tbody tr').hide();
+             var len = $('table tbody tr:not(.notfound) td:nth-child(2):contains("'+search+'")').length;
+             if(len > 0){
+                 $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
+                 $(this).closest('tr').show();
+                });
+             }
+             else{
+                     $('.notfound').show();
+                     //alert("working");
+                }
+        });
+});
+</script>
+</body>
+</html>
+
+
